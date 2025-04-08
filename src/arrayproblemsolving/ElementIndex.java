@@ -18,6 +18,7 @@ public class ElementIndex {
         for(int i=0; i<arr.length; i++){
             if(arr[i] == number){
                 System.out.println("Index is: " + i);
+                break;
             }
         }
     }
