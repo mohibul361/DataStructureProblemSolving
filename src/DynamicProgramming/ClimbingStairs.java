@@ -14,14 +14,14 @@ public class ClimbingStairs {
     public static void main(String args[]){
         int n = 3;
         
-        int prev = 1;
+        int prev2 = 1;
         int prev1 = 1;
         
         for(int i =2; i <=n; i++){
-            int current = prev+prev1;
+            int current = prev2+prev1;
             
-            prev1 = prev;
-            prev = current;
+            prev2 = prev1;
+            prev1 = current;
         }
         
         System.out.println("Number of ways to climbing stairs: " +prev);
