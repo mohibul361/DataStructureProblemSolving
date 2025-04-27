@@ -17,7 +17,7 @@ import java.util.Map;
  */
 public class GroupAnagram {
     
-    public static void printGroupAnagram(String str[]){
+    public static List<List<String>> printGroupAnagram(String str[]){
         
         Map<String, List<String>> map = new HashMap<>();
         
@@ -39,13 +39,11 @@ public class GroupAnagram {
                 map.put(newWord, words);
             }
         }
+
+        List<List<String>> result = new ArrayList();
         
-        for(String s: map.keySet()){
-            List<String> values = map.get(s);
-            
-            if(values.size() > 1){
-                System.out.println(values);
-            }
+        for(List<String> values: map.values()){
+            result.add(values);
         }
     }
     
