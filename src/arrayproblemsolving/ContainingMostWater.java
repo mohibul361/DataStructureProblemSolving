@@ -12,15 +12,22 @@ package arrayproblemsolving;
 public class ContainingMostWater {
     
     public static int containingMostWater(int arr[]){
-        int area = Integer.MIN_VALUE;
+        int area = 0;
+        int left = 0;
+        int right = arr.length-1;
         
-        for(int i = 0; i < arr.length-1; i++){
-            for(int j = i+1; j < arr.length; j++){
-                int water = (j-i) * Math.min(arr[i], arr[j]);
-                
-                area = Math.max(area, water);
+        while(left < right){
+            int water = Math.min(arr[left], arr[right) * (right - left);
+            area = Math.max(area, water);
+
+            if(arr[left] < arr[right]){
+                left++;
+            }
+            else{
+                right--;
             }
         }
+            
         return area;
     }
     
