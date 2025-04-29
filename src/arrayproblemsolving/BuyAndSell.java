@@ -17,7 +17,7 @@ public class BuyAndSell {
         
         int min = arr[0];
         
-        int maxProfit = Integer.MIN_VALUE;
+        int maxProfit = 0;
         
         for(int i = 1; i < arr.length; i++){
             int currProfit = arr[i] - min;
