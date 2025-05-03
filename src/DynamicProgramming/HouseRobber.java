@@ -14,59 +14,30 @@ import java.util.List;
  */
 public class HouseRobber {
     
-    public static long solve(List<Integer> list){
-        int n = list.size();
-        
-        long prev = list.get(0);
-        long prev1 = 0;
-        
-        for(int i = 0; i < list.size(); i++){
-            long pick = list.get(i);
-            
-            if(i > 1){
-                pick+=prev1;
-            }
-            
-            long nonPick = 0 + prev;
-            
-            long curr = Math.max(pick, nonPick);
-            
-            prev1 = prev;
-            prev = curr;
+   public static int houseRobbed(int arr[]){
+        int n = arr.length;
+        if(n==0){
+            return 0;
+        }
+        if(n == 1){
+            return arr[0];
         }
         
-        return prev;
-    }
-    
-    public static long robStreet(List<Integer> list, int n){
-        List<Integer> listOne = new ArrayList<>();
-        List<Integer> listTwo = new ArrayList<>();
+        int dp[] = new int[n];
+        dp[0] = arr[0];
+        dp[1] = Math.max(arr[0], arr[1]);
         
-        for(int i = 0; i < list.size(); i++){
-            if(i != 0){
-                listOne.add(list.get(i));
-            }
-            if(i != n-1){
-                listTwo.add(list.get(i));
-            }
+        for(int i = 2; i < n; i++){
+            dp[i] = Math.max(dp[i-1], dp[i-2]+arr[i]);
         }
-        long ansOne = solve(listOne);
-        long ansTwo = solve(listTwo);
         
-        return Math.max(ansOne, ansTwo);
+        return dp[n-1];
     }
     
-    public static void main(String args[]){
-        ArrayList<Integer> list = new ArrayList<>();
+    public static void main(String[] args) {
+        int arr[] = {1,2,3,5,6};
         
-        list.add(1);
-        list.add(5);
-        list.add(1);
-        list.add(2);
-        list.add(6);
-        
-        int n = list.size();
-        System.out.println(robStreet(list,n));
+        System.out.println(houseRobbed(arr));
     }
 } 
 
