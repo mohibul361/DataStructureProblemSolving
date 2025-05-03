@@ -13,40 +13,27 @@ import java.util.Arrays;
  */
 public class CoinChange {
     
-    public static long waysToMakeCoinChange(int arr[], int n, int T){
-        long prev[] = new long[T+1];
+    public static int coinChange(int coins[], int amount){
+        int dp[] = new int[amount+1];
+        Arrays.fill(dp, amount+1);
         
-        for(int i = 0; i <=T; i++){
-            if(i % arr[0] == 0){
-                prev[i] = 1;
-            }
-        }
+        dp[0] = 0;
         
-        for(int ind = 1; ind<n; ind++){
-            long curr[] = new long[T+1];
-            
-            for(int target = 0; target<=T; target++){
-                long notTaken = prev[target];
-                
-                long taken = 0;
-                
-                if(arr[ind] <= target){
-                    taken = curr[target - arr[ind]];
+        for(int i = 1; i <= amount; i++){
+            for(int coin: coins){
+                if(i-coin >= 0){
+                    dp[i] = Math.min(dp[i], dp[i-coin] +1);
                 }
-                
-                curr[target] = taken + notTaken;
             }
-            prev = curr;
         }
-        return prev[T];
+        return dp[amount] > amount ? -1 : dp[amount];
     }
     
-    public static void main(String args[]){
-        int arr[] = {1,2,3};
-        int n = arr.length;
-        int target = 4;
+    public static void main(String[] args) {
+        int coin[] = {1,2, 5};
+        int amount = 11;
         
-        System.out.println("Number of ways of count: = " + waysToMakeCoinChange(arr,n,target));
+        System.out.println(coinChange(coin, amount));
     }
     
     
