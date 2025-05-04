@@ -23,7 +23,7 @@ public class CheckBinarySearchTree {
         }
     }
     
-    public static boolean checkBST(Node root, int min, int max){
+    public static boolean checkBST(Node root, long min, long max){
         if(root == null){
             return true;
         }
@@ -38,8 +38,8 @@ public class CheckBinarySearchTree {
     
     public static boolean isBST(Node root){
         
-        int min = Integer.MIN_VALUE;
-        int max = Integer.MAX_VALUE;
+        Long min = Long.MIN_VALUE;
+        int max = Long.MAX_VALUE;
         
         if(checkBST(root, min, max)){
             return true;
